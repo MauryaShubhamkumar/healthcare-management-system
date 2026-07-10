@@ -19,16 +19,16 @@ Ensure you have the following installed on your machine:
 ### Step 1: Clone the Repository
 Open your terminal (macOS/Linux) or Command Prompt/PowerShell (Windows) and run:
 ```bash
-git clone https://github.com/<your-username>/DBMS-Project.git
-cd DBMS-Project
+git clone https://github.com/MauryaShubhamkumar/healthcare-management-system.git
+cd healthcare-management-system
 ```
 
 ---
 
 ### Step 2: Install Python Libraries
-Install the required packages using `pip`:
+Install the required packages using the `requirements.txt` file:
 ```bash
-pip install streamlit pymysql cryptography
+pip install -r requirements.txt
 ```
 
 ---
@@ -44,15 +44,16 @@ pip install streamlit pymysql cryptography
    ```sql
    SOURCE ehr.sql;
    ```
-4. Open the [database.py](file:///d:/My%20Room/Healthcare%20MS/DBMS-Project/health-record/database.py#L9-L15) file in your text editor and update the database credentials dictionary to match your local MySQL username and password:
+4. Open the [database.py](file:///d:/My%20Room/Healthcare%20MS/health-record/database.py#L7-L14) file in your text editor and update the database credentials inside the `connect_to_db` function to match your local MySQL username and password:
    ```python
    # In database.py
-   db_config = {
-       "host": "localhost",
-       "user": "your_mysql_username",  # E.g. 'root'
-       "password": "your_mysql_password", 
-       "database": "ehr"
-   }
+   conn = pymysql.connect(
+       host="localhost",
+       user="root",                      # Your MySQL username (e.g. 'root')
+       port=3306,
+       password="your_mysql_password",   # E.g. 'Maurya' or your own password
+       database="ehr"
+   )
    ```
 
 ---
@@ -70,12 +71,13 @@ Streamlit will compile the files and automatically open the application in your 
 
 ## 🛠️ Package Architecture
 
-The codebase has been refactored into a clean, structured package under the `health-record/` directory:
+The codebase has been refactored into a clean, structured package:
 
 ```
-DBMS-Project/
+healthcare-management-system/
 ├── ehr.sql                       # Database Setup SQL Script
 ├── README.md                     # Central Documentation File
+├── requirements.txt              # Package dependencies
 └── health-record/                # Main Application Package
     ├── Electronic_Health_Record.py # Main Entrypoint & Style Manager
     ├── database.py               # DB Connections & Auto-Schema Migrations
