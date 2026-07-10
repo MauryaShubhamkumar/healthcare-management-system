@@ -18,6 +18,12 @@ st.markdown("""
         font-family: 'Inter', -apple-system, sans-serif;
     }
 
+    /* Force Sleek Dark Mode Background & Visibility */
+    .stApp {
+        background: linear-gradient(180deg, #090d16 0%, #0d1220 100%) !important;
+        color: #e2e8f0 !important;
+    }
+
     /* Main Container Styling */
     div.block-container {
         padding: 3rem 5rem;
@@ -54,7 +60,7 @@ st.markdown("""
 
     /* Sidebar Customizations */
     section[data-testid="stSidebar"] {
-        background-color: #0f172a !important;
+        background-color: #05070c !important;
         border-right: 1px solid #1e293b;
     }
 
@@ -63,35 +69,39 @@ st.markdown("""
     section[data-testid="stSidebar"] h3, 
     section[data-testid="stSidebar"] p, 
     section[data-testid="stSidebar"] label,
-    section[data-testid="stSidebar"] span {
+    section[data-testid="stSidebar"] span,
+    section[data-testid="stSidebar"] div {
         color: #f8fafc !important;
     }
 
     /* Input Field Styling */
     .stTextInput>div>div>input, .stTextArea>div>div>textarea, .stSelectbox>div>div>div {
         border-radius: 8px !important;
-        border: 1px solid #e2e8f0 !important;
+        border: 1px solid #2e3e56 !important;
+        background-color: #111827 !important;
+        color: #f8fafc !important;
         padding: 0.5rem 0.8rem !important;
         transition: all 0.2s ease !important;
     }
 
     .stTextInput>div>div>input:focus, .stTextArea>div>div>textarea:focus {
         border-color: #0d9488 !important;
-        box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15) !important;
+        box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.25) !important;
     }
 
     /* Headings Styling */
     h1 {
         font-weight: 800 !important;
-        color: #0f172a !important;
+        color: #ffffff !important;
         letter-spacing: -0.025em;
         margin-bottom: 1.5rem !important;
+        text-shadow: 0 0 20px rgba(13, 148, 136, 0.1);
     }
 
     h2, h3 {
         font-weight: 700 !important;
-        color: #1e293b !important;
-        border-bottom: 2px solid #f1f5f9;
+        color: #f8fafc !important;
+        border-bottom: 2px solid #1f2937;
         padding-bottom: 0.6rem;
         margin-top: 2rem !important;
         margin-bottom: 1.2rem !important;
@@ -99,11 +109,46 @@ st.markdown("""
 
     /* Metric Layout Card styling */
     div[data-testid="stMetric"] {
-        background-color: #ffffff;
-        border: 1px solid #f1f5f9;
+        background-color: #111827 !important;
+        border: 1px solid #1f2937 !important;
         border-radius: 12px;
         padding: 1.2rem;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    div[data-testid="stMetric"] label {
+        color: #9ca3af !important;
+    }
+
+    div[data-testid="stMetricValue"] > div {
+        color: #ffffff !important;
+    }
+
+    /* Custom Home Page Classes */
+    .hero-card {
+        background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%) !important;
+        padding: 2.5rem 3rem !important;
+        border-radius: 16px !important;
+        color: white !important;
+        margin-bottom: 2.5rem !important;
+        box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .feature-card {
+        background-color: #111827 !important;
+        border: 1px solid #1f2937 !important;
+        padding: 2rem !important;
+        border-radius: 16px !important;
+        height: 100% !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px) !important;
+        border-color: #0d9488 !important;
+        box-shadow: 0 12px 20px -5px rgba(13, 148, 136, 0.2) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -145,9 +190,9 @@ def main():
             
             # Welcome Hero Banner
             st.markdown("""
-            <div style="background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%); padding: 3rem; border-radius: 16px; color: white; margin-bottom: 2.5rem; box-shadow: 0 10px 15px -3px rgba(13, 148, 136, 0.15);">
-                <h1 style="color: white !important; margin: 0; font-size: 2.5rem; font-weight: 800;">Welcome to your healthcare partner.</h1>
-                <p style="font-size: 1.1rem; opacity: 0.9; margin-top: 0.8rem; font-weight: 400; max-width: 700px;">
+            <div class="hero-card">
+                <h1 style="color: white !important; margin: 0; font-size: 2.3rem; font-weight: 800; border-bottom: none !important; text-shadow: none !important; line-height: 1.3;">Welcome to your healthcare partner.</h1>
+                <p style="font-size: 1.1rem; opacity: 0.95; margin-top: 0.8rem; font-weight: 400; max-width: 750px; color: #f0fdf4 !important; line-height: 1.6;">
                     A web-based Electronic Health Record (EHR) management system designed to streamline consultations, appointments, billing, lab results, and histories with maximum ease.
                 </p>
             </div>
@@ -157,26 +202,26 @@ def main():
             col1, col2, col3 = st.columns(3)
             with col1:
                 st.markdown("""
-                <div style="background-color: white; border: 1px solid #f1f5f9; padding: 1.8rem; border-radius: 12px; height: 100%; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);">
+                <div class="feature-card">
                     <div style="font-size: 2.2rem; margin-bottom: 0.8rem;">📅</div>
-                    <h4 style="margin: 0; color: #0f172a; font-weight: 700; font-size: 1.15rem;">Appointments</h4>
-                    <p style="color: #64748b; font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.5;">Book, update or cancel appointments with qualified doctors in just a few clicks.</p>
+                    <h4 style="margin: 0; color: #ffffff !important; font-weight: 700; font-size: 1.2rem;">Appointments</h4>
+                    <p style="color: #9ca3af !important; font-size: 0.9rem; margin-top: 0.6rem; line-height: 1.6;">Book, update or cancel appointments with qualified doctors in just a few clicks.</p>
                 </div>
                 """, unsafe_allow_html=True)
             with col2:
                 st.markdown("""
-                <div style="background-color: white; border: 1px solid #f1f5f9; padding: 1.8rem; border-radius: 12px; height: 100%; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);">
+                <div class="feature-card">
                     <div style="font-size: 2.2rem; margin-bottom: 0.8rem;">🔬</div>
-                    <h4 style="margin: 0; color: #0f172a; font-weight: 700; font-size: 1.15rem;">Lab Results</h4>
-                    <p style="color: #64748b; font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.5;">Direct integration of laboratory tests and results. Patients can view reports securely as soon as doctors upload them.</p>
+                    <h4 style="margin: 0; color: #ffffff !important; font-weight: 700; font-size: 1.2rem;">Lab Results</h4>
+                    <p style="color: #9ca3af !important; font-size: 0.9rem; margin-top: 0.6rem; line-height: 1.6;">Direct integration of laboratory tests and results. Patients can view reports securely as soon as doctors upload them.</p>
                 </div>
                 """, unsafe_allow_html=True)
             with col3:
                 st.markdown("""
-                <div style="background-color: white; border: 1px solid #f1f5f9; padding: 1.8rem; border-radius: 12px; height: 100%; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);">
+                <div class="feature-card">
                     <div style="font-size: 2.2rem; margin-bottom: 0.8rem;">💳</div>
-                    <h4 style="margin: 0; color: #0f172a; font-weight: 700; font-size: 1.15rem;">Wallet & Billing</h4>
-                    <p style="color: #64748b; font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.5;">Built-in secure digital wallets for instant consulting fee payouts, invoice tracking, and bill settlements.</p>
+                    <h4 style="margin: 0; color: #ffffff !important; font-weight: 700; font-size: 1.2rem;">Wallet & Billing</h4>
+                    <p style="color: #9ca3af !important; font-size: 0.9rem; margin-top: 0.6rem; line-height: 1.6;">Built-in secure digital wallets for instant consulting fee payouts, invoice tracking, and bill settlements.</p>
                 </div>
                 """, unsafe_allow_html=True)
 
