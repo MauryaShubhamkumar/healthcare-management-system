@@ -5,11 +5,12 @@ import bcrypt
 def connect_to_db():
     try:
         conn = pymysql.connect(
-            host="localhost",
-            user="root",
-            port=3306,
-            password="Maurya",  # Update this with your actual MySQL root password
-            database="ehr"
+            host=st.secrets["mysql"]["host"],
+            user=st.secrets["mysql"]["user"],
+            port=int(st.secrets["mysql"]["port"]),
+            password=st.secrets["mysql"]["password"],
+            database=st.secrets["mysql"]["database"],
+            ssl={}
         )
         return conn
     except pymysql.MySQLError as e:
