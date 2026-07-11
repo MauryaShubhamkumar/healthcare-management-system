@@ -1,6 +1,7 @@
 import streamlit as st
 import pymysql
 from database import connect_to_db, hash_password, verify_password
+import datetime
 
 def sign_up_patient(first_name, last_name, dob, address, phone, email, password):
     conn = connect_to_db()
@@ -76,7 +77,12 @@ def sign_up_patient_ui():
     st.subheader("Patient Sign-Up")
     first_name = st.text_input("First Name")
     last_name = st.text_input("Last Name")
-    dob = st.date_input("Date of Birth")
+    dob = st.date_input(
+        "Date of Birth",
+        value=datetime.date(2000, 1, 1),
+        min_value=datetime.date(1900, 1, 1),
+        max_value=datetime.date.today()
+    )
     address = st.text_area("Address")
     phone = st.text_input("Phone Number")
     email = st.text_input("Email")

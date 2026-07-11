@@ -2,6 +2,8 @@
 
 This is a **web-based Healthcare Operation Management System** built by me using **Streamlit** and **MySQL**, designed to streamline clinic and hospital workflows. It allows patients, doctors, and administrators to manage appointments, medical records, lab tests, billing, and transactions.
 
+🔗 **Live Demo**: [https://mauryas-health-recordelectronic-health-record-7c1kui.streamlit.app/](https://mauryas-health-recordelectronic-health-record-7c1kui.streamlit.app/)
+
 ---
 
 ## 🚀 How to Clone and Run on Any System
