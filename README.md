@@ -35,28 +35,25 @@ pip install -r requirements.txt
 
 ---
 
-### Step 3: Setup the Database
-1. Open your MySQL client (like MySQL Command Line Client, Workbench, or phpMyAdmin).
-2. Create a new database:
-   ```sql
-   CREATE DATABASE IF NOT EXISTS ehr;
-   USE ehr;
+### Step 3: Setup the Database & Secrets
+
+The application uses **Streamlit Secrets** to store database credentials securely without exposing them in the source code. You can set it up using either a local MySQL server or an online database (like Aiven).
+
+1. **Create the Secrets file**:
+   Create a folder named `.streamlit` in the root of the project, and inside it create a file named `secrets.toml`:
+   ```toml
+   [mysql]
+   host = "localhost"              # Change to your MySQL host (e.g. localhost or Aiven host)
+   port = 3306                     # Your MySQL port (usually 3306 or Aiven port)
+   user = "root"                   # Your MySQL username
+   password = "your_mysql_password"# Your MySQL password
+   database = "ehr"                # Your database name (e.g. ehr or defaultdb)
    ```
-3. Import the database tables by importing the SQL file `ehr.sql` included in the root folder:
-   ```sql
-   SOURCE ehr.sql;
-   ```
-4. Open the [database.py](file:///d:/My%20Room/Healthcare%20MS/health-record/database.py#L7-L14) file in your text editor and update the database credentials inside the `connect_to_db` function to match your local MySQL username and password:
-   ```python
-   # In database.py
-   conn = pymysql.connect(
-       host="localhost",
-       user="root",                      # Your MySQL username (e.g. 'root')
-       port=3306,
-       password="your_mysql_password",   # E.g. 'Maurya' or your own password
-       database="ehr"
-   )
-   ```
+
+2. **Create the Database and Tables**:
+   Open your MySQL client, connect to your server, and run the SQL code inside [db.sql](file:///d:/My%20Room/Healthcare%20MS/health-record/db.sql) (or `ehr.sql`) to initialize the tables.
+
+---
 
 ---
 
